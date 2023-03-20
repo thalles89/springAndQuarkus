@@ -20,25 +20,25 @@ public class WebSecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         return new InMemoryUserDetailsManager(User.withDefaultPasswordEncoder()
-            .username("UsuarioSeguro")
-            .password("PasswordSegura")
-            .roles("USER")
-            .build()
+                .username("UsuarioSeguro")
+                .password("PasswordSegura")
+                .roles("USER")
+                .build()
         );
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().disable()
-            .csrf().disable()
-            .authorizeRequests().requestMatchers(new OrRequestMatcher(List.of(
-                new AntPathRequestMatcher("/swagger-ui/**"),
-                new AntPathRequestMatcher("/v3/api-docs/**")
-            ))).permitAll()
-            .and().authorizeRequests().antMatchers(HttpMethod.GET, "/alunos/**").permitAll()
-            .and().authorizeRequests().anyRequest().authenticated()
-            .and().httpBasic();
+        return http
+                .cors().disable()
+                .csrf().disable()
+                .authorizeRequests().requestMatchers(new OrRequestMatcher(List.of(
+                        new AntPathRequestMatcher("/swagger-ui/**"),
+                        new AntPathRequestMatcher("/v3/api-docs/**")
+                ))).permitAll()
+                .and().authorizeRequests().antMatchers(HttpMethod.GET, "/alunos/**").permitAll()
+                .and().authorizeRequests().anyRequest().authenticated()
+                .and().httpBasic().and().build();
 
-        return http.build();
     }
 }

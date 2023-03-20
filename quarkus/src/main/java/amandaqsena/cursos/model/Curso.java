@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,10 +40,10 @@ public class Curso extends PanacheEntityBase {
     private List<Disciplina> disciplinas = new ArrayList<>();
 
     public static Curso fromCursoRequestDto(CursoRequestDto request) {
-        final CursoBuilder curso = new CursoBuilder();
-        curso.descricao = request.getDescricao();
-        curso.duracao = request.getDuracao();
-        curso.nome = request.getNome();
-        return curso.build();
+
+        return new CursoBuilder().descricao(request.getDescricao())
+                .duracao(request.getDuracao())
+                .nome(request.getNome()).build();
+
     }
 }

@@ -32,19 +32,4 @@ public class Aluno extends PanacheEntityBase {
     private String nome;
     @ManyToOne
     private Curso curso;
-    @ManyToMany
-    private Set<Disciplina> disciplinas;
-
-    public void matriculaNaDisciplina(Disciplina disciplina){
-        if(!disciplinas.add(disciplina)){
-            throw new IllegalArgumentException("Aluno já matriculado na disciplina");
-        }
-    }
-
-    public void removeDisciplina(Disciplina disciplina){
-        if(!disciplinas.remove(disciplina)){
-            throw new IllegalArgumentException("Aluno não estava matriculado na disciplina");
-        }
-    }
-
 }

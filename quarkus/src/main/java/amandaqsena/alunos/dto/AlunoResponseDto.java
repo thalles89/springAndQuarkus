@@ -19,12 +19,10 @@ import lombok.NoArgsConstructor;
 public class AlunoResponseDto {
     private int id;
     private String nome;
-    private Set<Integer> disciplinas;
     public static AlunoResponseDto from (Aluno aluno) {
         final AlunoResponseDtoBuilder response = new AlunoResponseDtoBuilder();
         response.id = aluno.getId();
         response.nome = aluno.getNome();
-        response.disciplinas = aluno.getDisciplinas().stream().map(it -> it.getId()).collect(Collectors.toSet());
         return response.build();
     }
 

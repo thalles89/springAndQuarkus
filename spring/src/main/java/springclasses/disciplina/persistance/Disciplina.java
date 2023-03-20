@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import springclasses.aluno.persistance.Aluno;
 import springclasses.curso.persistance.Curso;
-import springclasses.professor.persistance.Professor;
+import springclasses.professor.model.Professor;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class Disciplina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Curso curso;
     @ManyToMany
     private List<Professor> professores;

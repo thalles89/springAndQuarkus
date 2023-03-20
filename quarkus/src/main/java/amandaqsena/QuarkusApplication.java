@@ -17,7 +17,8 @@ import org.eclipse.microprofile.openapi.annotations.servers.Server;
         version = "1.0.0"
     ),
     servers = {@Server(url = "/")},
-    security = {@SecurityRequirement(name = "BasicAuth")})
+    security = {@SecurityRequirement(name = "Token JWT")})
+
 @SecurityScheme(
     securitySchemeName = "BasicAuth",
     type = HTTP,
